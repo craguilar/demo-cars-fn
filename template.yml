@@ -35,11 +35,11 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Events:
-        GetEvent:
-          Type: Api
+        HttpApiEvent:
+          Type: HttpApi
           Properties:
-            Path: /
-            Method: get
+            TimeoutInMillis: 25000
+            PayloadFormatVersion: '1.0'
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
