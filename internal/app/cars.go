@@ -1,9 +1,16 @@
-package internal
+package app
 
 import (
-	"os"
 	"time"
 )
+
+// Interface for Cars service
+type CarsService interface {
+	Car(plate string) (*Car, error)
+	Cars() ([]*CarSummary, error)
+	CreateOrUpdateCar(u *Car) (*Car, error)
+	DeleteCar(plate string) error
+}
 
 // Main car object .
 type Car struct {
@@ -25,17 +32,13 @@ type Car struct {
 
 	EngineSerialNumber string `json:"engineSerialNumber,omitempty"`
 
-	Comparny string `json:"comparny,omitempty"`
+	Company string `json:"company,omitempty"`
 
 	TimeCreated time.Time `json:"timeCreated,omitempty"`
 
 	TimeUpdated time.Time `json:"timeUpdated,omitempty"`
 
 	Images []Image `json:"images,omitempty"`
-}
-
-func (car *Car) String() string {
-	return "Yes!"
 }
 
 // Main CarSummary object .
@@ -57,5 +60,5 @@ type CarSummary struct {
 type Image struct {
 	Name string `json:"name"`
 
-	Content **os.File `json:"content"`
+	Content []byte `json:"content"`
 }

@@ -38,7 +38,7 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 1. Run the following command in your repository to build the main.go file.
 
     ```bash
-    GOARCH=amd64 GOOS=linux go build cmd/lambda/main.go
+    GOARCH=amd64 GOOS=linux go build -o main cmd/http/lambda/*.go
     ```
 
 1. Start the development server:
@@ -51,18 +51,31 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 
 ## Development
 
-```bash
-github.com/craguilar/demo-cars-fn/internal
-```
-
 Run server mode
 
 ```bash
-go run cmd/server/*.go
+go run cmd/http/server/*.go
 ```
+
+### Go Cloud
+
+https://github.com/google/go-cloud
+
+### Vulnerability checking
+
+Requires Go version 1.18 - see https://go.dev/blog/vuln
 
 ### Format
 
 ```bash
 gofmt -w -s .
 ```
+
+## References
+
+1. Directory structure :
+- https://www.gobeyond.dev/packages-as-layers/ , https://www.gobeyond.dev/standard-package-layout/  and  https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
+- https://leonardqmarcq.com/posts/go-project-structure-for-api-gateway-lambda-with-aws-sam 
+- https://github.com/golang-standards/project-layout 
+
+https://changelog.com/posts/on-go-application-structure? c
