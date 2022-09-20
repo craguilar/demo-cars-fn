@@ -16,13 +16,14 @@ This sample includes:
   Gateway.
 * template-configuration.json - this file contains the project ARN with placeholders used for tagging resources with the project ID  
 
-## Getting Started
+## Development
 
-These directions assume you want to develop on your development environment or a Cloud9 environment.
+### AWS Lambda execution
+
+These directions assume you want to develop on your development environment.
 
 To work on the sample code, you'll need to clone your project's repository to your
-local computer. If you haven't, do that first. You can find instructions in the
-AWS CodeStar user guide at https://docs.aws.amazon.com/codestar/latest/userguide/getting-started.html#clone-repo
+local computer. If you haven't, do that first.
 
 1. Install Go.  See https://golang.org/dl/ for details.
 
@@ -30,6 +31,12 @@ AWS CodeStar user guide at https://docs.aws.amazon.com/codestar/latest/userguide
 
     ```bash
     go mod init
+    ```
+
+    or if already installed
+
+    ```bash
+    go mod tidy
     ```
 
 1. Install the SAM CLI. For details see
@@ -47,9 +54,13 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
     sam local start-api -p 8080
     ```
 
-1. Open http://127.0.0.1:8080/ in a web browser to view your webapp.
+1. Open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
-## Development
+  ```bash
+  scripts/test.sh
+  ```
+
+### Server mode
 
 Run server mode
 
@@ -57,9 +68,17 @@ Run server mode
 go run cmd/http/server/*.go
 ```
 
-### Go Cloud
+Then open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
-https://github.com/google/go-cloud
+  ```bash
+  scripts/test.sh
+  ```
+
+### Dynamo DB 
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+
+## Contributing
 
 ### Vulnerability checking
 
@@ -71,11 +90,25 @@ Requires Go version 1.18 - see https://go.dev/blog/vuln
 gofmt -w -s .
 ```
 
+## Deployment
+
+Validate your Cloudformation template using below command: 
+
+```bash
+aws cloudformation validate-template --template-body file://./template.yml
+```
+
 ## References
 
+1. 
 1. Directory structure :
 - https://www.gobeyond.dev/packages-as-layers/ , https://www.gobeyond.dev/standard-package-layout/  and  https://medium.com/@benbjohnson/structuring-applications-in-go-3b04be4ff091
 - https://leonardqmarcq.com/posts/go-project-structure-for-api-gateway-lambda-with-aws-sam 
 - https://github.com/golang-standards/project-layout 
 
-https://changelog.com/posts/on-go-application-structure? c
+https://changelog.com/posts/on-go-application-structure? 
+2. Dynamo DB , https://www.trek10.com/blog/dynamodb-single-table-relational-modeling
+
+3. Go Cloud https://github.com/google/go-cloud
+4. AWS Lamdba Golang https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html
+5. AWS Lambda EnvVars https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html

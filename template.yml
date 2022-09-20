@@ -16,6 +16,9 @@ Parameters:
     Default: ''
 
 Globals:
+  Api:
+    # API Gateway regional endpoints
+    EndpointConfiguration: REGIONAL
   Function:
     AutoPublishAlias: live
     DeploymentPreference:
@@ -38,7 +41,7 @@ Resources:
         HttpApiEvent:
           Type: HttpApi
           Properties:
-            TimeoutInMillis: 25000
+            TimeoutInMillis: 15000
             PayloadFormatVersion: '1.0'
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda

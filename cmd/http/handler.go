@@ -2,7 +2,7 @@ package http
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/craguilar/demo-cars-fn/internal/app"
@@ -88,6 +88,7 @@ func writeError(w http.ResponseWriter, statusCode int, err error) {
 	} else if statusCode == 500 {
 		errorCode = "InternalServerError"
 	}
-	w.Write(SerializeError(statusCode, fmt.Sprintf("%s - %s", errorCode, err)))
+	log.Printf("Received error from call %s", err)
+	w.Write(SerializeError(statusCode, errorCode))
 
 }
