@@ -21,9 +21,10 @@ func NewCarServiceHandler(service app.CarsService) *CarsServiceHandler {
 
 func (c *CarsServiceHandler) AddCar(w http.ResponseWriter, r *http.Request) {
 	var car app.Car
-
+	log.Printf("Adding car: %s", r.Body)
 	err := json.NewDecoder(r.Body).Decode(&car)
 	if err != nil {
+
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(SerializeError(http.StatusBadRequest, "Invalid Body parameter"))
 		return

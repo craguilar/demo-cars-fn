@@ -86,7 +86,7 @@ func (c *CarsService) Cars() ([]*app.CarSummary, error) {
 
 // TODO:  Do validations here
 func (c *CarsService) CreateOrUpdateCar(u *app.Car) (*app.Car, error) {
-
+	log.Printf("Creating car with plate %s", u.Plate)
 	// Check if user exists
 	currentCar, _ := c.Car(u.Plate)
 	if currentCar == nil {
