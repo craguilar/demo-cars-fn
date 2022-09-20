@@ -59,7 +59,7 @@ Resources:
       Policies: 
         - PolicyName: LambdaDynamoExecution
           PolicyDocument:
-            Version: "2022-09-19"
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
