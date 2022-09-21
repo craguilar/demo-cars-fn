@@ -57,7 +57,7 @@ https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/s
 1. Open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
   ```bash
-  scripts/test.sh
+  scripts/test-integration.sh
   ```
 
 ### Server mode
@@ -71,7 +71,7 @@ go run cmd/http/server/*.go
 Then open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
   ```bash
-  scripts/test.sh
+  scripts/test-integration.sh
   ```
 
 ### Dynamo DB 
@@ -98,6 +98,13 @@ Validate your Cloudformation template using below command:
 aws cloudformation validate-template --template-body file://./template.yml
 ```
 
+## Security
+
+```bash
+curl -X POST --user '3iuha5liovo4t5ra85eimd681u:1uqqpss1dhd4m7tl4l60pp1e2cue3qlpbf4kc53bcsg8icm3chvv'  'https://democars.auth.us-east-2.amazoncognito.com/oauth2/token?grant_type=client_credentials&scope=profile' -H 'Content-Type: application/x-www-form-urlencoded'
+```
+
+
 ## References
 
 1. 
@@ -112,3 +119,4 @@ https://changelog.com/posts/on-go-application-structure?
 3. Go Cloud https://github.com/google/go-cloud
 4. AWS Lamdba Golang https://docs.aws.amazon.com/lambda/latest/dg/golang-handler.html
 5. AWS Lambda EnvVars https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html
+6. https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/using-dynamodb-with-go-sdk.html

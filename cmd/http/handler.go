@@ -2,8 +2,9 @@ package http
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/craguilar/demo-cars-fn/internal/app"
 	"github.com/gorilla/mux"
@@ -21,16 +22,17 @@ func NewCarServiceHandler(service app.CarsService) *CarsServiceHandler {
 
 func (c *CarsServiceHandler) AddCar(w http.ResponseWriter, r *http.Request) {
 	var car app.Car
-	log.Printf("Adding car: %s", r.Body)
+
 	err := json.NewDecoder(r.Body).Decode(&car)
 	if err != nil {
-
+		log.Warn("Error when decoding Car Body", err)
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write(SerializeError(http.StatusBadRequest, "Invalid Body parameter"))
 		return
 	}
 	createdCar, err := c.carService.CreateOrUpdateCar(&car)
 	if err != nil {
+		log.Error("Error when creating car", err)
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}

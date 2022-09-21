@@ -2,8 +2,9 @@ package dynamo
 
 import (
 	"errors"
-	"log"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -88,7 +89,10 @@ func (c *CarsService) Cars() ([]*app.CarSummary, error) {
 func (c *CarsService) CreateOrUpdateCar(u *app.Car) (*app.Car, error) {
 	log.Printf("Creating car with plate %s", u.Plate)
 	// Check if user exists
-	currentCar, _ := c.Car(u.Plate)
+	currentCar, err := c.Car(u.Plate)
+	if err != nil {
+		return nil, err
+	}
 	if currentCar == nil {
 		u.TimeCreated = time.Now()
 	}
@@ -109,7 +113,7 @@ func (c *CarsService) CreateOrUpdateCar(u *app.Car) (*app.Car, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Printf("%s", output)
+	log.Infof("%s", output)
 	return u, nil
 }
 

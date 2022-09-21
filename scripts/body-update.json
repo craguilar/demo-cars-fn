@@ -1,0 +1,13 @@
+{
+  "plate": "GLD-CA01",
+  "make": "Audi",
+  "model": "A3",
+  "description": "Test description -updated",
+  "typeOfUse": "PARTICULAR",
+  "nationalKey": null,
+  "serialNumber": null,
+  "engineSerialNumber": "40001003354",
+  "company": "Isama Corp",
+  "timeCreated": null,
+  "timeUpdated": null
+}
