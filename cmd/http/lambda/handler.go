@@ -1,7 +1,7 @@
 package main
 
 import (
-	"log"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/gorilla/mux"
 
@@ -32,6 +32,7 @@ func (h *LambaHandler) Handler(request events.APIGatewayProxyRequest) (events.AP
 	)
 	response, err := h.adapter.Proxy(*core.NewSwitchableAPIGatewayRequestV1(&request))
 	if err != nil {
+		log.Error(err)
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
 			Body:       "InternalServerError",

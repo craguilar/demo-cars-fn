@@ -66,6 +66,7 @@ func NewRouter(handler *CarsServiceHandler) *mux.Router {
 		Name("OptionsNoOp").
 		PathPrefix("/20200201").
 		Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(http.StatusOK)
 		}))
 
 	return router

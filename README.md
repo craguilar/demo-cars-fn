@@ -99,9 +99,9 @@ aws cloudformation validate-template --template-body file://./template.yml
 ```
 
 ## Security
-
+ 
 ```bash
-curl -X POST --user '3iuha5liovo4t5ra85eimd681u:1uqqpss1dhd4m7tl4l60pp1e2cue3qlpbf4kc53bcsg8icm3chvv'  'https://democars.auth.us-east-2.amazoncognito.com/oauth2/token?grant_type=client_credentials&scope=profile' -H 'Content-Type: application/x-www-form-urlencoded'
+curl -X POST --user ':'  'https://democars.auth.us-east-2.amazoncognito.com/oauth2/token?grant_type=client_credentials&scope=profile' -H 'Content-Type: application/x-www-form-urlencoded'
 ```
 
 
