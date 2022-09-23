@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -59,6 +60,12 @@ func NewRouter(handler *CarsServiceHandler) *mux.Router {
 			Name(route.Name).
 			Handler(handler)
 	}
+	// OPTIONS Method no op handler
+	router.
+		Methods("OPTIONS").
+		Name("OptionsNoOp").
+		Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		}))
 
 	return router
 }
@@ -71,7 +78,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 // The middleware configuration happens before anything, this middleware also applies to serving the swagger.json document.
 // So this is a good place to plug in a panic handling middleware, logging and metrics
 func SetupGlobalMiddleware(handler http.Handler, name string) http.Handler {
-	return JsonContentTypeMiddleWare(LoggerMiddleWare(handler, name))
+	return LoggerMiddleWare(JsonContentTypeMiddleWare(Cors(handler)), name)
 }
 
 // Set application/json for all Responses in this Server
@@ -99,4 +106,13 @@ func LoggerMiddleWare(inner http.Handler, name string) http.Handler {
 			time.Since(start),
 		)
 	})
+}
+
+func Cors(inner http.Handler) http.Handler {
+	// Where ORIGIN_ALLOWED is like `scheme://dns[:port]`, or `*` (insecure)
+	headersOk := handlers.AllowedHeaders([]string{"*"})
+	originsOk := handlers.AllowedOrigins([]string{"localhost:3000"})
+	methodsOk := handlers.AllowedMethods([]string{"*"})
+
+	return handlers.CORS(originsOk, headersOk, methodsOk)(inner)
 }
