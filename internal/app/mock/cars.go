@@ -47,6 +47,11 @@ func (c *CarsService) CreateOrUpdateCar(u *app.Car) (*app.Car, error) {
 	c.lock.Lock()
 	defer c.lock.Unlock()
 
+	err := u.Validate()
+	if err != nil {
+		return nil, err
+	}
+
 	_, exists := c.db[u.Plate]
 	if !exists {
 		u.TimeCreated = time.Now()

@@ -2,7 +2,7 @@
 
 BASE_URL="http://127.0.0.1:8080"
 
-set -x # Turn on show commands
+#set -x # Turn on show commands
 
 # Function that call using either POST or PUT and report errors
 function call_put_post {
