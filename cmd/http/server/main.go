@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
+	"github.com/craguilar/demo-cars-fn/cmd"
 	appHttp "github.com/craguilar/demo-cars-fn/cmd/http"
 	"github.com/craguilar/demo-cars-fn/internal/app/mock"
 )
@@ -16,5 +18,5 @@ func main() {
 	handler := appHttp.NewCarServiceHandler(carService)
 	router := appHttp.NewRouter(handler)
 	// Start server
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", cmd.GetConfig("PORT")), router))
 }

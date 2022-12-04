@@ -85,7 +85,6 @@ func (c *CarsService) Cars() ([]*app.CarSummary, error) {
 	return list, nil
 }
 
-// TODO:  Do validations here
 func (c *CarsService) CreateOrUpdateCar(u *app.Car) (*app.Car, error) {
 	err := u.Validate()
 	if err != nil {

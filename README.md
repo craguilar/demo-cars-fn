@@ -113,7 +113,6 @@ Requires Go version 1.18 - see https://go.dev/blog/vuln
 
 ## ToDo
 
-1. Make certain properties configurable.
 1. Implement pagination , see scan Limit and ExclusiveStartKey - this looks more like a Cursor basde pagination.
 1. Review Go Cloud https://github.com/google/go-cloud
 
@@ -125,3 +124,4 @@ Requires Go version 1.18 - see https://go.dev/blog/vuln
 1. AWS Lambda EnvVars https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html
 1. https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/using-dynamodb-with-go-sdk.html
 1. https://github.com/go-playground/validator
+1. Using Viper as configuration framework https://github.com/spf13/viper/blob/master/viper.go
