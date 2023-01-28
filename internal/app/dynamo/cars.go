@@ -61,7 +61,7 @@ func (c *CarsService) Car(plate string) (*app.Car, error) {
 	if car.Plate == "" {
 		return nil, nil
 	}
-	log.Printf("Return car %s", car)
+	log.Printf("Return car %v", car)
 	return car, nil
 }
 

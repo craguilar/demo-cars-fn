@@ -115,6 +115,7 @@ Requires Go version 1.18 - see https://go.dev/blog/vuln
 
 1. Implement pagination , see scan Limit and ExclusiveStartKey - this looks more like a Cursor basde pagination.
 1. Review Go Cloud https://github.com/google/go-cloud
+1. Acceptance Tests implementation https://quii.gitbook.io/learn-go-with-tests/testing-fundamentals/intro-to-acceptance-tests
 
 ## References
 
