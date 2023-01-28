@@ -28,35 +28,35 @@ local computer. If you haven't, do that first , then:
 
 1. Install your dependencies:
 
-    ```bash
-    go mod init
-    ```
+```bash
+go mod init
+```
 
-    or if already installed
+or if already installed
 
-    ```bash
-    go mod tidy
-    ```
+```bash
+go mod tidy
+```
 
 1. Install the SAM CLI. For details see https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
 
 1. Run the following command in your repository to build the main.go file.
 
-    ```bash
-    GOARCH=amd64 GOOS=linux go build -o main cmd/http/lambda/*.go
-    ```
+```bash
+GOARCH=amd64 GOOS=linux go build -o main cmd/http/lambda/*.go
+```
 
 1. Start the development server:
 
-    ```bash
-    sam local start-api -p 8080
-    ```
+```bash
+sam local start-api -p 8080
+```
 
 1. Open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
-  ```bash
-  scripts/test-integration.sh
-  ```
+```bash
+scripts/test-integration.sh
+```
 
 ### Server mode
 
@@ -68,9 +68,9 @@ go run cmd/http/server/*.go
 
 Then open http://127.0.0.1:8080/ in a web browser to view your webapp or execute
 
-  ```bash
-  scripts/test-integration.sh
-  ```
+```bash
+scripts/test-integration.sh
+```
 
 ### Dynamo DB
 
