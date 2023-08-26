@@ -30,7 +30,7 @@ phases:
     commands:
 
     # Build our go application
-    - go build -o main cmd/http/lambda/*.go
+    - GOARCH=amd64 GOOS=linux go build -o bootstrap cmd/http/lambda/*.go
 
     # Copy static assets to S3, and package application with AWS CloudFormation/SAM
     - aws s3 cp --recursive api/ s3://$WEBSITE_S3_BUCKET/api/ --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
